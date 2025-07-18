@@ -64,38 +64,37 @@
 
     <!-- module 5 -->
     <a href="#" class="nav-link text-center">
-      <i class="bi bi-bar-chart"></i>
-      <span class="description">QR Code Integration</span>
+    <i class="bi bi-qr-code"></i>      <span class="description">QR Code Integration</span>
     </a>
 
     <!-- module 6 -->
     <a href="#" class="nav-link text-center">
-      <i class="bi bi-bar-chart"></i>
+    <i class="bi bi-person-badge-fill"></i>
       <span class="description">Student ID Generation</span>
     </a>
 
     <!-- module 7 -->
     <a href="#" class="nav-link text-center">
-      <i class="bi bi-bar-chart"></i>
-      <span class="description">Document Requests</span>
+    <i class="bi bi-folder"></i>
+          <span class="description">Document Requests</span>
     </a>
 
     <!-- module 8 -->
     <a href="#" class="nav-link text-center">
-      <i class="bi bi-bar-chart"></i>
-      <span class="description">Student Status Tracker</span>
+    <i class="bi bi-person-check"></i>
+          <span class="description">Student Status Tracker</span>
     </a>
 
     <!-- module 9 -->
     <a href="#" class="nav-link text-center">
-      <i class="bi bi-bar-chart"></i>
+    <i class="bi bi-archive"></i>
       <span class="description">Digital File Storage</span>
     </a>
 
     <!-- module 10 -->
     <a href="#" class="nav-link text-center">
-      <i class="bi bi-bar-chart"></i>
-      <span class="description">Student MasterList Generator</span>
+    <i class="bi bi-list-columns-reverse"></i> 
+         <span class="description">Student MasterList Generator</span>
     </a>
     
   </nav>
