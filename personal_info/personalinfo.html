@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMS3</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <style>
+    @import url("../style.css");
+
+    /* Make sidebar scrollable in landscape mode on mobile devices */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .sidebar {
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- navbar -->
+  <div class="sidebar">
+    <nav class="nav flex-column">
+    <a href="#" class="nav-link navbar-brand">
+    <span class="icon"><i class="bi bi-grid"></i></span>
+    <span class=" description">SMS 3</span> 
+    </a>
+
+    <!-- module 1 -->
+    <a href="#" class="nav-link text-center active" data-bs-toggle="collapse" data-bs-target="#module1drop" aria-expanded="false" aria-controls="module1drop">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 1
+        <i class="bi bi-caret-down-fill"></i>
+      </span>
+    </a>
+
+    <!-- submodules 1 -->
+    <div class="sub-menu collapse" id="module1drop">
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 1</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 2</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 3</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 4</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 5</span></a>
+    </div>
+
+    <!-- module 2 -->
+    <a href="#" class="nav-link text-center" data-bs-toggle="collapse" data-bs-target="#module2drop" aria-expanded="false" aria-controls="module2drop">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 2
+        <i class="bi bi-caret-down-fill"></i>
+      </span>
+    </a>
+
+    <!-- submodules 2 -->
+    <div class="sub-menu collapse" id="module2drop">
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 1</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 2</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 3</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 4</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 5</span></a>
+    </div>
+
+    <!-- module 3 -->
+    <a href="#" class="nav-link text-center" data-bs-toggle="collapse" data-bs-target="#module3drop" aria-expanded="false" aria-controls="module3drop">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 3
+        <i class="bi bi-caret-down-fill"></i>
+      </span>
+    </a>
+
+    <!-- submodules 3 -->
+    <div class="sub-menu collapse" id="module3drop">
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 1</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 2</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 3</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 4</span></a>
+      <a href="#" class="nav-link"><i class="bi bi-list-ul"></i> <span class="description">sub module 5</span></a>
+    </div>
+
+    <!-- Repeat similar structure for modules 4 to 10 -->
+    <!-- module 4 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 4</span>
+    </a>
+
+    <!-- module 5 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 5</span>
+    </a>
+
+    <!-- module 6 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 6</span>
+    </a>
+
+    <!-- module 7 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 7</span>
+    </a>
+
+    <!-- module 8 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 8</span>
+    </a>
+
+    <!-- module 9 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 9</span>
+    </a>
+
+    <!-- module 10 -->
+    <a href="#" class="nav-link text-center">
+      <i class="bi bi-bar-chart"></i>
+      <span class="description">Module 10</span>
+    </a>
+    
+  </nav>
+  </div>
+
+  <div class="main-content flex-grow-1">
+    <div class="container">
+      <!-- Remove global search bar here -->
+      <div class="card" style="height: 1000px;">
+        <div class="card-header">
+          <h2 class="text-center">Welcome to SMS3</h2>
+        </div>
+        <div class="card-body">
+          <div class="accordion" id="coursesAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBSIT">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBSIT" aria-expanded="true" aria-controls="collapseBSIT">
+                  Bachelor of Science in Information Technology (BSIT)
+                </button>
+              </h2>
+              <div id="collapseBSIT" class="accordion-collapse collapse show" aria-labelledby="headingBSIT" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BSIT -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BSIT -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Example student row -->
+                      <tr>
+                        <td>2023001</td>
+                        <td>Garcia</td>
+                        <td>Juan</td>
+                        <td>Jr.</td>
+                        <td>2nd</td>
+                        <td>BSIT</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023008</td>
+                        <td>Alvarez</td>
+                        <td>Maria</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSIT</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023009</td>
+                        <td>Bernal</td>
+                        <td>Leo</td>
+                        <td></td>
+                        <td>3rd</td>
+                        <td>BSIT</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023010</td>
+                        <td>Domingo</td>
+                        <td>Anna</td>
+                        <td></td>
+                        <td>4th</td>
+                        <td>BSIT</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023011</td>
+                        <td>Castro</td>
+                        <td>Paul</td>
+                        <td>Sr.</td>
+                        <td>2nd</td>
+                        <td>BSIT</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023012</td>
+                        <td>Flores</td>
+                        <td>Jane</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSIT</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBSHRM">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBSHRM" aria-expanded="false" aria-controls="collapseBSHRM">
+                  Bachelor of Science in Hotel and Restaurant Management (BSHRM)
+                </button>
+              </h2>
+              <div id="collapseBSHRM" class="accordion-collapse collapse" aria-labelledby="headingBSHRM" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BSHRM -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BSHRM -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2023002</td>
+                        <td>Cruz</td>
+                        <td>Maria</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSHRM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023013</td>
+                        <td>Delos Santos</td>
+                        <td>Rico</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSHRM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023014</td>
+                        <td>Enriquez</td>
+                        <td>Jessa</td>
+                        <td></td>
+                        <td>3rd</td>
+                        <td>BSHRM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023015</td>
+                        <td>Ferrer</td>
+                        <td>Mike</td>
+                        <td>Jr.</td>
+                        <td>4th</td>
+                        <td>BSHRM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023016</td>
+                        <td>Gutierrez</td>
+                        <td>Anna</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSHRM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023017</td>
+                        <td>Hernandez</td>
+                        <td>Paul</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSHRM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBSBA">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBSBA" aria-expanded="false" aria-controls="collapseBSBA">
+                  Bachelor of Science in Business Administration (BSBA)
+                </button>
+              </h2>
+              <div id="collapseBSBA" class="accordion-collapse collapse" aria-labelledby="headingBSBA" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BSBA -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BSBA -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2023003</td>
+                        <td>Reyes</td>
+                        <td>Jose</td>
+                        <td>III</td>
+                        <td>3rd</td>
+                        <td>BSBA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023018</td>
+                        <td>Ilagan</td>
+                        <td>Rhea</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSBA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023019</td>
+                        <td>Jimenez</td>
+                        <td>Mark</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSBA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023020</td>
+                        <td>Kintanar</td>
+                        <td>Joy</td>
+                        <td></td>
+                        <td>4th</td>
+                        <td>BSBA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023021</td>
+                        <td>Lorenzo</td>
+                        <td>Paul</td>
+                        <td>Sr.</td>
+                        <td>3rd</td>
+                        <td>BSBA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023022</td>
+                        <td>Manalo</td>
+                        <td>Jane</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSBA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBSOA">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBSOA" aria-expanded="false" aria-controls="collapseBSOA">
+                  Bachelor of Science in Office Administration (BSOA)
+                </button>
+              </h2>
+              <div id="collapseBSOA" class="accordion-collapse collapse" aria-labelledby="headingBSOA" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BSOA -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BSOA -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2023004</td>
+                        <td>Santos</td>
+                        <td>Ana</td>
+                        <td></td>
+                        <td>4th</td>
+                        <td>BSOA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023023</td>
+                        <td>Natividad</td>
+                        <td>Rico</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSOA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023024</td>
+                        <td>Ocampo</td>
+                        <td>Jessa</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSOA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023025</td>
+                        <td>Perez</td>
+                        <td>Mike</td>
+                        <td>Jr.</td>
+                        <td>3rd</td>
+                        <td>BSOA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023026</td>
+                        <td>Quinto</td>
+                        <td>Anna</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSOA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023027</td>
+                        <td>Ramos</td>
+                        <td>Paul</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSOA</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBSCRIM">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBSCRIM" aria-expanded="false" aria-controls="collapseBSCRIM">
+                  Bachelor of Science in Criminology (BSCRIM)
+                </button>
+              </h2>
+              <div id="collapseBSCRIM" class="accordion-collapse collapse" aria-labelledby="headingBSCRIM" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BSCRIM -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BSCRIM -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2023005</td>
+                        <td>Lopez</td>
+                        <td>Carlos</td>
+                        <td>Sr.</td>
+                        <td>1st</td>
+                        <td>BSCRIM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023028</td>
+                        <td>Soriano</td>
+                        <td>Rico</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSCRIM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023029</td>
+                        <td>Tan</td>
+                        <td>Jessa</td>
+                        <td></td>
+                        <td>3rd</td>
+                        <td>BSCRIM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023030</td>
+                        <td>Uy</td>
+                        <td>Mike</td>
+                        <td>Jr.</td>
+                        <td>4th</td>
+                        <td>BSCRIM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023031</td>
+                        <td>Villanueva</td>
+                        <td>Anna</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSCRIM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023032</td>
+                        <td>Yap</td>
+                        <td>Paul</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSCRIM</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBEED">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBEED" aria-expanded="false" aria-controls="collapseBEED">
+                  Bachelor of Elementary Education (BEED)
+                </button>
+              </h2>
+              <div id="collapseBEED" class="accordion-collapse collapse" aria-labelledby="headingBEED" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BEED -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BEED -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2023006</td>
+                        <td>Torres</td>
+                        <td>Emily</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BEED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023033</td>
+                        <td>Zamora</td>
+                        <td>Rico</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BEED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023034</td>
+                        <td>Abad</td>
+                        <td>Jessa</td>
+                        <td></td>
+                        <td>3rd</td>
+                        <td>BEED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023035</td>
+                        <td>Bautista</td>
+                        <td>Mike</td>
+                        <td>Jr.</td>
+                        <td>4th</td>
+                        <td>BEED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023036</td>
+                        <td>Castillo</td>
+                        <td>Anna</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BEED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023037</td>
+                        <td>Dela Cruz</td>
+                        <td>Paul</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BEED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingBSED">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBSED" aria-expanded="false" aria-controls="collapseBSED">
+                  Bachelor of Secondary Education (BSED)
+                </button>
+              </h2>
+              <div id="collapseBSED" class="accordion-collapse collapse" aria-labelledby="headingBSED" data-bs-parent="#coursesAccordion">
+                <div class="accordion-body">
+                  <!-- Search bar for BSED -->
+                  <div class="mb-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control course-search-input" placeholder="Enter Student ID">
+                      <button class="btn btn-primary course-search-btn" type="button">
+                        <i class="bi bi-search"></i> Search
+                      </button>
+                      <button class="btn btn-secondary course-search-reset" type="button" style="display:none;">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Sort button for BSED -->
+                  <div class="mb-2">
+                    <button class="btn btn-outline-secondary btn-sm sortYearBtn" type="button">
+                      Sort by Year (1st-4th), A-Z
+                    </button>
+                  </div>
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th>Student ID</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Suffix</th>
+                        <th>Year</th>
+                        <th>Course</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2023007</td>
+                        <td>Fernandez</td>
+                        <td>Mark</td>
+                        <td>IV</td>
+                        <td>3rd</td>
+                        <td>BSED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023038</td>
+                        <td>Espino</td>
+                        <td>Rhea</td>
+                        <td></td>
+                        <td>1st</td>
+                        <td>BSED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023039</td>
+                        <td>Flores</td>
+                        <td>Mark</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023040</td>
+                        <td>Gomez</td>
+                        <td>Joy</td>
+                        <td></td>
+                        <td>4th</td>
+                        <td>BSED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023041</td>
+                        <td>Hernandez</td>
+                        <td>Paul</td>
+                        <td>Sr.</td>
+                        <td>3rd</td>
+                        <td>BSED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                      <tr>
+                        <td>2023042</td>
+                        <td>Ignacio</td>
+                        <td>Jane</td>
+                        <td></td>
+                        <td>2nd</td>
+                        <td>BSED</td>
+                        <td><a href="#" class="btn btn-primary btn-sm">View Info</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+  </div>
+
+  <footer class="mt-auto bg-light">
+    <div class="container text-center">
+      <p class="text-muted">© 2023 Your Company. All rights reserved.</p>
+    </div>
+  </footer>
+
+  
+  </style>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Remove global search/reset logic
+
+// Per-course search functionality
+document.querySelectorAll('.accordion-body').forEach(accordionBody => {
+  const searchInput = accordionBody.querySelector('.course-search-input');
+  const searchBtn = accordionBody.querySelector('.course-search-btn');
+  const resetBtn = accordionBody.querySelector('.course-search-reset');
+  const table = accordionBody.querySelector('table');
+
+  if (searchBtn && searchInput && resetBtn && table) {
+    searchBtn.addEventListener('click', function() {
+      const query = searchInput.value.trim().toLowerCase();
+      let hasResults = false;
+      if (!query) {
+        table.querySelectorAll('tbody tr').forEach(row => { row.style.display = ''; });
+        resetBtn.style.display = 'none';
+        return;
+      } else {
+        resetBtn.style.display = 'inline-block';
+      }
+      table.querySelectorAll('tbody tr').forEach(row => {
+        const studentID = row.children[0]?.textContent || '';
+        if (studentID.toLowerCase().includes(query)) {
+          row.style.display = '';
+          hasResults = true;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      if (!hasResults) {
+        table.querySelectorAll('tbody tr').forEach(row => { row.style.display = ''; });
+        resetBtn.style.display = 'none';
+      }
+    });
+    resetBtn.addEventListener('click', function() {
+      searchInput.value = '';
+      this.style.display = 'none';
+      table.querySelectorAll('tbody tr').forEach(row => { row.style.display = ''; });
+    });
+  }
+});
+
+// Sorting logic for each course table with toggle
+document.querySelectorAll('.sortYearBtn').forEach(btn => {
+  btn.dataset.sortMode = btn.dataset.sortMode || 'az';
+  btn.addEventListener('click', function() {
+    const accordionBody = btn.closest('.accordion-body');
+    const table = accordionBody.querySelector('table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr')).filter(row => row.style.display !== 'none');
+    const yearOrder = { '1st': 1, '2nd': 2, '3rd': 3, '4th': 4 };
+
+    if (btn.dataset.sortMode === 'az') {
+      rows.sort((a, b) => {
+        const lastA = (a.children[1]?.textContent || '').trim().toLowerCase();
+        const lastB = (b.children[1]?.textContent || '').trim().toLowerCase();
+        return lastA.localeCompare(lastB);
+      });
+      btn.dataset.sortMode = 'year';
+      btn.textContent = 'Sort by Year (1st-4th), A-Z';
+    } else {
+      rows.sort((a, b) => {
+        const yearA = (a.children[4]?.textContent || '').trim();
+        const yearB = (b.children[4]?.textContent || '').trim();
+        const lastA = (a.children[1]?.textContent || '').trim().toLowerCase();
+        const lastB = (b.children[1]?.textContent || '').trim().toLowerCase();
+        const yearDiff = (yearOrder[yearA] || 99) - (yearOrder[yearB] || 99);
+        if (yearDiff !== 0) return yearDiff;
+        return lastA.localeCompare(lastB);
+      });
+      btn.dataset.sortMode = 'az';
+      btn.textContent = 'Sort A-Z by Last Name';
+    }
+    rows.forEach(row => tbody.appendChild(row));
+  });
+});
+</script>
+</html>
