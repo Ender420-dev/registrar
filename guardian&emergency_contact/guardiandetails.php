@@ -39,68 +39,58 @@
                     <h3 class="card-header text-center">Guardian & Emergency Contact</h3>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <div class="list-group" id="list-tab" role="tablist">
+      <!-- Search bar -->
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="🔍 Search student, ID or guardian..." id="searchGuardian">
+      </div>
 
-                            <input type="text" id="listSearch" class="form-control mb-2" placeholder="Search tab...">
-                                <a href="#" class="list-group-item list-group-item-action active" role="tab"
-                                    aria-controls="list-new" data-bs-toggle="list">New </a>
-                                <a href="#" class="list-group-item list-group-item-action" role="tab"
-                                    aria-controls="list-new" data-bs-toggle="list">Done </a>
-                                <a href="#" class="list-group-item list-group-item-action" role="tab"
-                                    aria-controls="list-new" data-bs-toggle="list">Rejected</a>
-                                
-                            </div>
+      <!-- Data table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Student ID</th>
+              <th>Student Name</th>
+              <th>Guardian Name</th>
+              <th>Relationship</th>
+              <th>Contact Number</th>
+              <th>Emergency Contact</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-
-
-
-
-
-                        </div>
-                        <div class="col-lg-10">
-                            <div class="container mt-5">
-                                <h5> Student Guardian Details</h5>
-                                <table class="table table-bordered table-hover">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Student ID</th>
-                                            <th>Name</th>
-                                            <th>Parent/Guardian</th>
-                                            <th>Purpose</th>
-                                            <th>Status</th>
-                                            <th>Date Requested</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2023-0001</td>
-                                            <td>John Doe</td>
-                                            <td>Good Moral</td>
-                                            <td>Scholarship</td>
-                                            <td><span class="badge bg-warning">Pending</span></td>
-                                            <td>2025-07-26</td>
-                                            <td>
-                                                <div class="btn-group" role="group"> 
-                                                    <button type="button" class="btn btn-success">Edit</button>
-                                                    <button type="button" class="btn btn-primary">View</button>
-                                                    <button type="button" class="btn btn-danger">Delete</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                </div>
+          <tbody>
+            <tr>
+              <td>2023-0001</td>
+              <td>John Doe</td>
+              <td>Maria Lopez</td>
+              <td>Mother</td>
+              <td>+639123456789</td>
+              <td>Jose Lopez (Uncle)</td>
+              <td><span class="badge bg-success">Verified</span></td>
+              <td>
+                <a href="view_guardian.php?id=2023-0001" class="btn btn-sm btn-info">View</a>
+                <a href="edit_guardian.php?id=2023-0001" class="btn btn-sm btn-warning">Edit</a>
+              </td>
+            </tr>
+            <tr>
+              <td>2023-0002</td>
+              <td>Jane Smith</td>
+              <td>Anna Smith</td>
+              <td>Mother</td>
+              <td>+639234567890</td>
+              <td>–</td>
+              <td><span class="badge bg-danger">Incomplete</span></td>
+              <td>
+                <a href="view_guardian.php?id=2023-0002" class="btn btn-sm btn-info">View</a>
+                <a href="edit_guardian.php?id=2023-0002" class="btn btn-sm btn-warning">Edit</a>
+              </td>
+            </tr>
+            <!-- Add more rows dynamically -->
+          </tbody>
+        </table>
+      </div>
             </div>
         </div>
     </div>

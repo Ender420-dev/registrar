@@ -33,33 +33,85 @@
 
 
   <div class="main-content flex-grow-1">
-    <div class="container">
+    <div class="container" style="height:300px;">
       <div class="card" style="height:700px; overflow-x:scroll;">
         <div class="card-content">
           <h3 class="card-header text-center">Personal Info Dashboard</h3>
         </div>
         <div class="card-body">
+          <div class="container">
           <div class="row">
-            <div class="col-lg-2">
+          <div class="row text-white mb-4">
+    <div class="col-md-3 mb-3">
+      <div class="card bg-primary">
+        <div class="card-body">
+          <h5>Total Enrolled</h5>
+          <h3>3,542</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card bg-success">
+        <div class="card-body">
+          <h5>Pending Documents</h5>
+          <h3>214</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card bg-warning">
+        <div class="card-body">
+          <h5>Scholarship Students</h5>
+          <h3>512</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <div class="card bg-danger">
+        <div class="card-body">
+          <h5>Dropouts</h5>
+          <h3>37</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+           
 
-              <div class="card">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><i class="bi bi-person-plus"> </i><span class="list-description"> New
-                      Student: </span>100</li>
+  
+</div>
 
-                  <li class="list-group-item"><i class="bi bi-people"> </i><span class="list-description"> Total
-                      Student: </span>100</li>
-                  <li class="list-group-item"><i class="bi bi-person-check"> </i><span class="list-description"> Active
-                      Student: </span>100</li>
-
-                </ul>
-              </div>
 
               
 
 
             </div>
             <div class="col">
+            <div class="row mb-3">
+  <div class="col-md-3">
+    <input type="text" class="form-control" id="searchID" placeholder="Search Student ID">
+  </div>
+  <div class="col-md-3">
+    <input type="text" class="form-control" id="searchName" placeholder="Search Full Name">
+  </div>
+  <div class="col-md-3">
+    <select class="form-select" id="searchCourse">
+      <option value="">All Departments</option>
+      <option value="BS Computer Science">BS Computer Science</option>
+      <option value="BS Information Technology">BS Information Technology</option>
+      <option value="BS Course 3">BS Course 3</option>
+      <!-- Add more as needed -->
+    </select>
+  </div>
+  <div class="col-md-3">
+    <select class="form-select" id="searchYear">
+      <option value="">All Year Levels</option>
+      <option value="1st Year">1st Year</option>
+      <option value="2nd Year">2nd Year</option>
+      <option value="3rd Year">3rd Year</option>
+      <option value="4th Year">4th Year</option>
+    </select>
+  </div>
+</div>
 
               <div class="table-responsive">
                 <table class="table table-hover ">
@@ -281,7 +333,7 @@
 
       </div>
     </div>
-  </div>
+  </div></div>
 
   </div>
   </div>
@@ -297,6 +349,37 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </html>
-<script></script>
+<script>
+
+const enrollmentCtx = document.getElementById('enrollmentChart').getContext('2d');
+  const genderCtx = document.getElementById('genderChart').getContext('2d');
+
+  new Chart(enrollmentCtx, {
+    type: 'line',
+    data: {
+      labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+      datasets: [{
+        label: 'Enrollment',
+        data: [2000, 2500, 2700, 3000, 3300, 3542],
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: '#007bff',
+        borderWidth: 2,
+        fill: true
+      }]
+    }
+  });
+
+  new Chart(genderCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Male', 'Female', 'Other'],
+      datasets: [{
+        data: [1800, 1700, 42],
+        backgroundColor: ['#0d6efd', '#dc3545', '#ffc107']
+      }]
+    }
+  });
+</script>
