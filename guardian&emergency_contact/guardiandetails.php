@@ -39,6 +39,21 @@
                     <h3 class="card-header text-center">Guardian & Emergency Contact</h3>
                 </div>
                 <div class="card-body">
+                <?php
+include '../db.php';
+
+
+$sql = "SELECT g.*, 
+               CONCAT_WS(' ', s.FirstName, s.MiddleName, s.LastName) AS full_name, 
+               s.studentID
+        FROM guardianemergencycontact g
+        LEFT JOIN personalinfo s 
+          ON g.PersonalID = s.studentID
+        ORDER BY s.studentID ASC";
+$result = $conn->query($sql);
+?>
+
+
       <!-- Search bar -->
       <div class="mb-3">
         <input type="text" class="form-control" placeholder="🔍 Search student, ID or guardian..." id="searchGuardian">
@@ -61,34 +76,31 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>2023-0001</td>
-              <td>John Doe</td>
-              <td>Maria Lopez</td>
-              <td>Mother</td>
-              <td>+639123456789</td>
-              <td>Jose Lopez (Uncle)</td>
-              <td><span class="badge bg-success">Verified</span></td>
-              <td>
-                <a href="view_guardian.php?id=2023-0001" class="btn btn-sm btn-info">View</a>
-                <a href="edit_guardian.php?id=2023-0001" class="btn btn-sm btn-warning">Edit</a>
-              </td>
-            </tr>
-            <tr>
-              <td>2023-0002</td>
-              <td>Jane Smith</td>
-              <td>Anna Smith</td>
-              <td>Mother</td>
-              <td>+639234567890</td>
-              <td>–</td>
-              <td><span class="badge bg-danger">Incomplete</span></td>
-              <td>
-                <a href="view_guardian.php?id=2023-0002" class="btn btn-sm btn-info">View</a>
-                <a href="edit_guardian.php?id=2023-0002" class="btn btn-sm btn-warning">Edit</a>
-              </td>
-            </tr>
-            <!-- Add more rows dynamically -->
-          </tbody>
+<?php
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $statusBadge = ($row['status'] == 'Verified') ? "bg-success" : "bg-danger";
+
+        echo "<tr>
+                <td>{$row['student_number']}</td>
+                <td>{$row['full_name']}</td>
+                <td>{$row['guardian_name']}</td>
+                <td>{$row['relationship']}</td>
+                <td>{$row['contact_number']}</td>
+                <td>{$row['emergency_contact']}</td>
+                <td><span class='badge {$statusBadge}'>{$row['status']}</span></td>
+                <td>
+                    <a href='view_guardian.php?id={$row['id']}' class='btn btn-sm btn-info'>View</a>
+                    <a href='edit_guardian.php?id={$row['id']}' class='btn btn-sm btn-warning'>Edit</a>
+                </td>
+              </tr>";
+    }
+} else {
+    echo "<tr><td colspan='8' class='text-muted'>No guardian records found.</td></tr>";
+}
+?>
+</tbody>
+
         </table>
       </div>
             </div>
@@ -116,17 +128,14 @@
 </html>
 <script>
 
-document.getElementById('listSearch').addEventListener('keyup', function () {
-        let input = this.value.toLowerCase();
-        let items = document.querySelectorAll('#list-tab .list-group-item');
+document.getElementById('searchGuardian').addEventListener('keyup', function () {
+    let input = this.value.toLowerCase();
+    let rows = document.querySelectorAll('tbody tr');
 
-        items.forEach(function (item) {
-            let text = item.textContent.toLowerCase();
-            if (text.includes(input)) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
-        });
+    rows.forEach(function (row) {
+        let text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? '' : 'none';
     });
+});
+
 </script>

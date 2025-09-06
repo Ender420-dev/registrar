@@ -4,16 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registrar</title>
+  <title>Registrar - QR Code Integration</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../style.css?v=1.3">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
   <style>
     @import url("../style.css");
 
-    /* Make sidebar scrollable in landscape mode on mobile devices */
     @media (max-width: 768px) and (orientation: landscape) {
       .sidebar {
         max-height: 100vh;
@@ -24,77 +23,80 @@
 </head>
 
 <body>
-  <!-- navbar -->
-
   <?php include '../sidenav.php'; ?>
-
-
-
-
+  <?php include '../db.php'; ?>
 
   <div class="main-content flex-grow-1">
     <div class="container">
-      <div class="card" style="height:700px; overflow-x:scroll;">
+      <div class="card" style="height:700px; overflow-x:auto;">
         <div class="card-content">
           <h3 class="card-header text-center">QR Code Integration</h3>
         </div>
         <div class="card-body">
-          <div class="row">
+
+          <!-- Students Table -->
           <table class="table table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Course</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Sample Student -->
-    <tr>
-      <td>202500001</td>
-      <td>Ana Santos</td>
-      <td>BSIT</td>
-      <td>
-        <button class="btn btn-sm btn-primary generateQRBtn" 
-                data-id="202500001" 
-                data-name="Ana Santos">
-          <i class="bi bi-qr-code"></i> Generate QR
-        </button>
-      </td>
-    </tr>
-    <!-- Add more students here -->
-  </tbody>
-</table>
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $sql = "SELECT studentID, CONCAT_WS(' ', FirstName, MiddleName, LastName) AS full_name, CurrentCourse 
+                      FROM personalinfo 
+                      ORDER BY studentID ASC";
+              $result = $conn->query($sql);
 
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "
+                  <tr>
+                    <td>{$row['studentID']}</td>
+                    <td>{$row['full_name']}</td>
+                    <td>{$row['CurrentCourse']}</td>
+                    <td>
+                      <button class='btn btn-sm btn-primary generateQRBtn'
+                              data-id='{$row['studentID']}'
+                              data-name='{$row['full_name']}'>
+                        <i class='bi bi-qr-code'></i> Generate QR
+                      </button>
+                    </td>
+                  </tr>";
+                }
+              } else {
+                echo "<tr><td colspan='4' class='text-muted'>No students found.</td></tr>";
+              }
+              ?>
+            </tbody>
+          </table>
 
-<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="qrModalLabel">Student QR Code</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body text-center">
-        <p id="studentName" class="fw-bold"></p>
-        <div id="qrcode"></div>
-        <a id="downloadBtn" class="btn btn-sm btn-success mt-3" download="qrcode.png">
-          <i class="bi bi-download"></i> Download QR
-        </a>
-      </div>
+          <!-- QR Modal -->
+          <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="qrModalLabel">Student QR Code</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                  <p id="studentName" class="fw-bold"></p>
+                  <div id="qrcode"></div>
+                  <a id="downloadBtn" class="btn btn-sm btn-success mt-3" download="qrcode.png">
+                    <i class="bi bi-download"></i> Download QR
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- card-body -->
+      </div> <!-- card -->
     </div>
   </div>
-</div>
-
-
-      <div class="row">
-
-      </div>
-    </div>
-  </div>
-
-  </div>
-  </div></div>
 
   <footer class="mt-auto bg-light">
     <div class="container text-center">
@@ -102,53 +104,45 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 
-  </style>
+  <script>
+    const qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
 
+    document.querySelectorAll('.generateQRBtn').forEach(button => {
+      button.addEventListener('click', function () {
+        const studentId = this.dataset.id;
+        const studentName = this.dataset.name;
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        document.getElementById("studentName").textContent = studentName;
+        const qrDiv = document.getElementById("qrcode");
+        qrDiv.innerHTML = "";
 
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
-<script>
-  const qrModal = new bootstrap.Modal(document.getElementById('qrModal'));
+        // Change this to your actual hosted student info page
+        const profileURL = `https://yourdomain.com/student_info.php?id=${studentId}`;
 
-  document.querySelectorAll('.generateQRBtn').forEach(button => {
-    button.addEventListener('click', function () {
-      const studentId = this.dataset.id;
-      const studentName = this.dataset.name;
+        const qrCode = new QRCode(qrDiv, {
+          text: profileURL,
+          width: 200,
+          height: 200
+        });
 
-      document.getElementById("studentName").textContent = studentName;
-      const qrDiv = document.getElementById("qrcode");
-      qrDiv.innerHTML = "";
-
-      const profileURL = `https://yourdomain.com/student_info.php?id=${studentId}`;
-      
-      // Create a temporary div for QR
-      const tempQR = new QRCode(qrDiv, {
-        text: profileURL,
-        width: 200,
-        height: 200
-      });
-
-      // Wait a bit for QR to render before downloading
-      setTimeout(() => {
-        const img = qrDiv.querySelector('img') || qrDiv.querySelector('canvas');
-        if (img) {
-          const downloadLink = document.getElementById("downloadBtn");
-          if (img.tagName.toLowerCase() === 'canvas') {
-            downloadLink.href = img.toDataURL("image/png");
-          } else {
-            downloadLink.href = img.src;
+        setTimeout(() => {
+          const img = qrDiv.querySelector('img') || qrDiv.querySelector('canvas');
+          if (img) {
+            const downloadLink = document.getElementById("downloadBtn");
+            if (img.tagName.toLowerCase() === 'canvas') {
+              downloadLink.href = img.toDataURL("image/png");
+            } else {
+              downloadLink.href = img.src;
+            }
           }
-        }
-      }, 500);
+        }, 500);
 
-      qrModal.show();
+        qrModal.show();
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
-
-<script></script>

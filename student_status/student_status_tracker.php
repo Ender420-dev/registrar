@@ -1,3 +1,35 @@
+<?php
+include '../db.php';
+
+// Handle filters
+$student_id = $_GET['studentID'] ?? '';
+$student_name = $_GET['student_name'] ?? '';
+$course = $_GET['course'] ?? '';
+$status = $_GET['status'] ?? '';
+
+$sql = "SELECT ss.*, 
+               p.FirstName, p.MiddleName, p.LastName, p.studentID, p.CurrentCourse as Course, p.CurrentYearLevel as YearLevel
+        FROM studentstatustracker ss
+        LEFT JOIN personalinfo p ON ss.PersonalID = p.PersonalID
+        WHERE 1=1";
+
+if (!empty($student_id)) {
+  $sql .= " AND p.studentID LIKE '%" . $conn->real_escape_string($student_id) . "%'";
+}
+if (!empty($student_name)) {
+  $sql .= " AND CONCAT(p.FirstName, ' ', p.MiddleName, ' ', p.LastName) LIKE '%" . $conn->real_escape_string($student_name) . "%'";
+}
+if (!empty($course)) {
+  $sql .= " AND p.Course = '" . $conn->real_escape_string($course) . "'";
+}
+if (!empty($status)) {
+  $sql .= " AND ss.CurrentStatus = '" . $conn->real_escape_string($status) . "'";
+}
+
+$sql .= " ORDER BY ss.DateUpdated DESC";
+$result = $conn->query($sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +43,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
   <style>
-    @import url("../style.css");
-
     body {
       background-color: #f8f9fa;
     }
@@ -38,7 +68,6 @@
 </head>
 
 <body>
-  <!-- sidenav -->
   <?php include '../sidenav.php'; ?>
 
   <div class="main-content flex-grow-1 p-3">
@@ -53,26 +82,29 @@
           <form method="GET" class="search-bar mb-4">
             <div class="row g-2 align-items-center">
               <div class="col-md-3">
-                <input type="text" name="student_id" class="form-control" placeholder="Search by Student ID">
+                <input type="text" name="student_id" class="form-control" placeholder="Search by Student ID"
+                  value="<?= htmlspecialchars($student_id) ?>">
               </div>
               <div class="col-md-3">
-                <input type="text" name="student_name" class="form-control" placeholder="Search by Name">
+                <input type="text" name="student_name" class="form-control" placeholder="Search by Name"
+                  value="<?= htmlspecialchars($student_name) ?>">
               </div>
               <div class="col-md-2">
                 <select name="course" class="form-select">
                   <option value="">All Courses</option>
-                  <option value="BSCS">BSCS</option>
-                  <option value="BSIT">BSIT</option>
-                  <option value="BSBA">BSBA</option>
+                  <option value="BSCS" <?= $course == "BSCS" ? "selected" : "" ?>>BSCS</option>
+                  <option value="BSIT" <?= $course == "BSIT" ? "selected" : "" ?>>BSIT</option>
+                  <option value="BSBA" <?= $course == "BSBA" ? "selected" : "" ?>>BSBA</option>
                 </select>
               </div>
               <div class="col-md-2">
                 <select name="status" class="form-select">
                   <option value="">All Status</option>
-                  <option value="Active">Active</option>
-                  <option value="Inactive">Inactive</option>
-                  <option value="Graduated">Graduated</option>
-                  <option value="Dropped">Dropped</option>
+                  <option value="Active" <?= $status == "Active" ? "selected" : "" ?>>Active</option>
+                  <option value="Inactive" <?= $status == "Inactive" ? "selected" : "" ?>>Inactive</option>
+                  <option value="Graduated" <?= $status == "Graduated" ? "selected" : "" ?>>Graduated</option>
+                  <option value="Dropped" <?= $status == "Dropped" ? "selected" : "" ?>>Dropped</option>
+                  <option value="Transferee" <?= $status == "Transferee" ? "selected" : "" ?>>Transferee</option>
                 </select>
               </div>
               <div class="col-md-2">
@@ -85,76 +117,65 @@
 
           <!-- Student Table -->
           <div class="table-responsive">
-  <table class="table table-bordered align-middle text-center">
-    <thead>
-      <tr>
-        <th>Student ID</th>
-        <th>Name</th>
-        <th>Course</th>
-        <th>Year Level</th>
-        <th>Status</th>
-        <th>Last Update</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Sample rows (replace with PHP fetch loop) -->
-      <tr>
-        <td>2025001</td>
-        <td>Juan Dela Cruz</td>
-        <td>BSCS</td>
-        <td>3rd Year</td>
-        <td><span class="status-badge bg-success text-white">Active</span></td>
-        <td>2025-08-15</td>
-        <td>
-          <button class="btn btn-info btn-sm"><i class="bi bi-eye"></i></button>
-          <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-secondary btn-sm"><i class="bi bi-clock-history"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>2025002</td>
-        <td>Maria Santos</td>
-        <td>BSIT</td>
-        <td>4th Year</td>
-        <td><span class="status-badge bg-danger text-white">Dropped</span></td>
-        <td>2025-07-30</td>
-        <td>
-          <button class="btn btn-info btn-sm"><i class="bi bi-eye"></i></button>
-          <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-secondary btn-sm"><i class="bi bi-clock-history"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>2025003</td>
-        <td>Carlos Reyes</td>
-        <td>BSBA</td>
-        <td>2nd Year</td>
-        <td><span class="status-badge bg-primary text-white">Graduated</span></td>
-        <td>2025-05-22</td>
-        <td>
-          <button class="btn btn-info btn-sm"><i class="bi bi-eye"></i></button>
-          <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-secondary btn-sm"><i class="bi bi-clock-history"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>2025004</td>
-        <td>Ana Lopez</td>
-        <td>BSHM</td>
-        <td>1st Year</td>
-        <td><span class="status-badge bg-warning text-dark">Transferee</span></td>
-        <td>2025-08-20</td>
-        <td>
-          <button class="btn btn-info btn-sm"><i class="bi bi-eye"></i></button>
-          <button class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-secondary btn-sm"><i class="bi bi-clock-history"></i></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+            <table class="table table-bordered align-middle text-center">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Name</th>
+                  <th>Course</th>
+                  <th>Year Level</th>
+                  <th>Status</th>
+                  <th>Last Update</th>
+                  <th>Updated By</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
+                    $fullname = $row['FirstName'] . ' ' . $row['MiddleName'] . ' ' . $row['LastName'];
+                    $badge = "bg-secondary";
+                    switch ($row['CurrentStatus']) {
+                      case 'Active':
+                        $badge = "bg-success";
+                        break;
+                      case 'Inactive':
+                        $badge = "bg-dark";
+                        break;
+                      case 'Graduated':
+                        $badge = "bg-primary";
+                        break;
+                      case 'Dropped':
+                        $badge = "bg-danger";
+                        break;
+                      case 'Transferee':
+                        $badge = "bg-warning text-dark";
+                        break;
+                    }
 
+                    echo "<tr>
+                            <td>{$row['StudentNumber']}</td>
+                            <td>{$fullname}</td>
+                            <td>{$row['Course']}</td>
+                            <td>{$row['YearLevel']}</td>
+                            <td><span class='status-badge {$badge}'>{$row['CurrentStatus']}</span></td>
+                            <td>{$row['DateUpdated']}</td>
+                            <td>{$row['UpdatedBy']}</td>
+                            <td>
+                              <a href='view_status.php?id={$row['StatusID']}' class='btn btn-info btn-sm'><i class='bi bi-eye'></i></a>
+                              <a href='edit_status.php?id={$row['StatusID']}' class='btn btn-warning btn-sm'><i class='bi bi-pencil-square'></i></a>
+                              <a href='status_history.php?personalid={$row['PersonalID']}' class='btn btn-secondary btn-sm'><i class='bi bi-clock-history'></i></a>
+                            </td>
+                          </tr>";
+                  }
+                } else {
+                  echo "<tr><td colspan='8' class='text-muted'>No student status records found.</td></tr>";
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
 
         </div>
       </div>
