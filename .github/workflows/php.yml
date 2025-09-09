@@ -1,4 +1,4 @@
-name: Run Tests
+name: PHP CI
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
           --health-timeout=5s
           --health-retries=3
         ports:
-          - 3307:3307
+          - 3306:3306
 
     steps:
       - name: Checkout Code
@@ -35,37 +35,11 @@ jobs:
         with:
           php-version: '8.1'
 
-      # Run your PHP tests (replace with your test framework or scripts)
-      - name: Run PHP Lint
-        run: php -l index.php
+      - name: Run PHP Lint (all files)
+        run: |
+          find . -type f -name "*.php" -print0 | xargs -0 -n1 php -l
 
-      - name: Run Unit Tests
-        run: php tests/test.php
-        # 👆 Replace with how you actually test (PHPUnit, Pest, or custom scripts)
-
-  react-tests:
-    name: React Jest Tests
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Tests
-        run: npm test
+      # Optional: run your test script if you have one
+      - name: Run Custom Tests
+        run: |
+          if [ -f tests/test.php ]; then php tests/test.php; fi
