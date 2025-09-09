@@ -1,10 +1,7 @@
-name: PHP CI
+name: PHP CI/CD
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
@@ -12,19 +9,6 @@ jobs:
   php-tests:
     name: PHP Tests
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: stock_test
-          MYSQL_ROOT_PASSWORD: root
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-        ports:
-          - 3307:3307
 
     steps:
       - name: Checkout Code
@@ -39,7 +23,18 @@ jobs:
         run: |
           find . -type f -name "*.php" -print0 | xargs -0 -n1 php -l
 
-      # Optional: run your test script if you have one
-      - name: Run Custom Tests
-        run: |
-          if [ -f tests/test.php ]; then php tests/test.php; fi
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-latest
+    needs: php-tests
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/
